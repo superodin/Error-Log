@@ -1,1 +1,17 @@
 
+今天进行同济项目中遇到一个问题，关闭tab页时，会自动跳转显示到下一个tab，而正常应该是vm.showTab应该为undefined。
+tab页关闭代码如下：
+
+<div class="tab_btn_custom" ng-repeat="tab in vm.tabs track by $index" ng-init="showItems=[]">
+	<button ng-class="{'active':vm.showTab==tab.name}"
+			ng-click="vm.changeShowTab(tab)"
+			ng-mouseover="showItems[$index]=true"
+			ng-mouseout="showItems[$index]=false"
+			title="{{tab.title}}">
+		{{tab.title||'null'}}
+		<span ng-show="showItems[$index]" class="mainMenuBodyRightTabSpan" ng-click="vm.closeChooseTab(tab.name)" title="关闭">
+			&times;
+		</span>
+	</button>
+</div>
+		
