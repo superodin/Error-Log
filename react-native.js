@@ -1,10 +1,13 @@
 
 
 rm -rf node_modules && npm install
-1.mobx状态库的使用   同级组件之间通信  设计es7的装饰器   
-@inject  插入   @observer 观察者模式  负责监视组件数据   @observable 声明监视数据    @action  行为   改变数据的方法要包裹在其中
+1.mobx状态库的使用  同级组件之间通信 设计es7的装饰器   
+@inject  插入  
+@observer 观察者模式 负责监视组件数据  
+@observable 声明监视数据    
+@action 行为  改变数据的方法要包裹在其中
 
-2.webview组件插入html代码  将获取的代码片段插入完整h5中   设置图片宽度能防止溢屏   将页面高度document.body.clientHeight
+2.webview组件插入html代码，将获取的代码片段插入完整h5中，设置图片宽度能防止溢屏   将页面高度document.body.clientHeight
 放入document.title中  然后用onNavigationStateChange函数将高度传给RN   
 P.S  尝试在h5页面用postMessage将高度传给RN  RN用onMessage获取所传参数     但是发送失败    还需验证
 
@@ -15,13 +18,14 @@ P.S  尝试在h5页面用postMessage将高度传给RN  RN用onMessage获取所�
 react-native-image-crop-picker 编译报错要添加 maven 源
 mainactitiyjava native 代码
 原生的代码按照androidstudio的方式集成即可   并在build.gradle内配置加载项     
-react-native link  xxxx   是RN集成原生插件的方法   首先 install 然后 link   会自动进行设置加载项和路径   remove后 之前的插入代码不会一同删除
+react-native link xxxx  是RN集成原生插件的方法
+首先 install 然后 link 会自动进行设置加载项和路径  remove后 之前的插入代码不会一同删除
 要手动删除  避免加载两次插件报错
 
 0829
-今天将项目的RN版本·从0.49升级到0.56   使用git升级模块   首先全局安装 npm install -g react-native-git-upgrade   然后 
-直接运行 react-native-git-upgrade  就可RN升级到最新稳定版本    主要原理是利用Git工具计算新旧版本文件间的差异并生成补丁，
-然后在用户的项目文件上应用补丁
+今天将项目的RN版本·从0.49升级到0.56，使用git升级模块，首先全局安装 npm install -g react-native-git-upgrade，然后 
+直接运行 react-native-git-upgrade，就可RN升级到最新稳定版本。
+主要原理是利用Git工具计算新旧版本文件间的差异并生成补丁，然后在用户的项目文件上应用补丁。
 
 Unable to resolve module `AccessibilityInfo`  0.56的官方BUG    解决方法降级到0.55.4
 
@@ -34,7 +38,6 @@ maven {
         }
 
 0830
-
 引用本地图片的名字不能带中文和 -
 
 0910
@@ -49,9 +52,9 @@ let i = 0;
     }, 80); 
 做到从字体轮播，注意调整间隔时间很重要，而且要在组件卸载时 componentWillUnmount 清除定时器
 
-还有引入第三房字体，要在根目录下新建 assets/fonts/xxx.ttf   然后在packjson设置字体引入的路径 
+还有引入第三房字体，要在根目录下新建 assets/fonts/xxx.ttf,然后在packjson设置字体引入的路径 
 "rnpm": { "assets": [ "./assets/fonts" ] }，然后运行react-native link 链接到原生代码中
-P.S. 将字体直接引入到原生文件夹中  android/app/src/main/assets/fonts/xxx.ttf    好像不会起作用
+P.S. 将字体直接引入到原生文件夹中,android/app/src/main/assets/fonts/xxx.ttf,好像不会起作用
 PP.S.（会起作用，但是字体文件的名称不能更改，fontFamily引用必须和字体文件的内部属性名称一致） 
 
  
@@ -60,26 +63,15 @@ PP.S.（会起作用，但是字体文件的名称不能更改，fontFamily引�
 react-native-http-cache error
 ios： /node_modules/react-native-http-cache/ios/RCTHttpCache/RCTHttpCache.m 下做如下更改
 
-
 #import "RCTImageLoader.h" -> #import "React/RCTImageLoader.h"
-
 
 #import "RCTBridge.h" -> #import "React/RCTBridge.h"
 
-
-
 android： /node_modules/react-native-http-cache/android/src/main/java/cn/reactnative/httpcache/HttpCacheModule.java 下做如下更改
-
 
 getMainDiskStorageCache 替换为-> getMainFileCache
 
-
 getSmallImageDiskStorageCache 替换为-> getSmallImageFileCache
-
-
-
-android:   /node_modules/react-native-http-cache/android/src/main/java/cn/reactnative/httpcache/HttpCacheModule.java 下作如下更改
-getMainDiskSrorageCache 替换为 -> getMainFileCache
 
 Image组件
 resizeMethod和resizeMode 两种属性可以一起使用   缩小图片很好用
@@ -104,7 +96,6 @@ setState就会以异步的方式执行。一般理解为this.state的值会在DO
 
 3.数组方法
    求和    arr.reduce(function(total,num){return toatl+num})
-
    push() 方法可向数组的末尾添加一个或多个元素，并返回新的长度（谨记谨记，返回为长度）。
    pop() 移出最后一个元素 ，返回移出的元素（谨记谨记，返回为删除的元素）
 
@@ -131,12 +122,10 @@ buiild.gradle文件的 targetSdkVersion = 23
 这个主要影响Android 8.x版本
 
 1128
-
 Unable to resolve module './createNavigationContainer'  react navigation报错   缓存原因
 运行npm start -- --reset-cache
 
 1214
-
 获取当前组件高度 findNodeHandle方法是在React中定义，可以找到组件实例的reactTag（执行在JS端），类似获取当前组件
 UIManager.measure(handle, (x, y, width, height, pageX, pageY) =>{}）
 获取组件信息  x、y:为视图的相对位置。width、height：为视图的宽度和高度。pageX、pageY为视图在屏幕上的绝对位置  
@@ -195,8 +184,7 @@ onMessage：
 https://blog.csdn.net/u011690583/article/details/68922118
 
 0211
-
-引用handlebars    报错 Module `fs` does not exist in the Haste module map
+引用handlebars,报错 Module `fs` does not exist in the Haste module map
 fs是node的内置模块，不能用于rn
 简单来说，就是这个handlebars并不能直接用于rn
 删除node_module中该模块
@@ -204,7 +192,8 @@ fs是node的内置模块，不能用于rn
 0212
 mustache ->  js模板引擎
 Mustache.render("Hello,{{name}}",{name,"Jack"})
-返回 Hello,Jack     双花括号{{}}为mustache的占位符，其中为插入的参数值
+返回 Hello,Jack
+双花括号{{}}为mustache的占位符，其中为插入的参数值
 通常的解决方案是将模板放在script标签中
 <script type="text/x-mustache" id="template">
 
@@ -271,8 +260,19 @@ flatlist 的renderItem返回的是对象
 对数据进行操作先判断该数据存在不存在
 
 0528
-promise.race（[promiseA,promiseB]） 竞赛对象,哪个promise先处理完成就返回哪个promise的resolve或reject
+1.promise.race（[promiseA,promiseB]） 竞赛对象,哪个promise先处理完成就返回哪个promise的resolve或reject
 let a = new Promise((resolve,reject)=>{}).then(res=>{res为resovle的值}).catch(err=>{console.log(err为reject的值)})
+
+2.在Promise.all(()=>{})内进行for循环，才会使所有循环都进行完毕后返回一个数组。
+Promise.all()会以一个 promises 数组为输入，并且返回一个新的 promise。这个新的 promise 会在数组中所有的 promises 都成功返回后才返回。他是异步版的 for 循环。
+
+3.then()函数一定要返回 return
+  return 另一个 promise
+  return 一个同步的值 (或者 undefined)
+  throw 一个同步异常
+  
+4.Promise.resolve()  Promise.reject()
+  new Promise((resolve,reject)=>{ resolve() })的语法糖
 
 
 
