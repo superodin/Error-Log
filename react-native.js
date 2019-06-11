@@ -273,6 +273,15 @@ Promise.all()会以一个 promises 数组为输入，并且返回一个新的 pr
   
 4.Promise.resolve()  Promise.reject()
   new Promise((resolve,reject)=>{ resolve() })的语法糖
+  
+0611
+// includes：判断是否包含然后直接返回布尔值
+let str = 'hahah';
+console.log(str.includes('y')); // false
+ 
+// repeat: 获取字符串重复n次
+let s = 'he';
+console.log(s.repeat(3)); // 'hehehe'
 
 
 
