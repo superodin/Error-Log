@@ -282,6 +282,8 @@ console.log(str.includes('y')); // false
 // repeat: 获取字符串重复n次
 let s = 'he';
 console.log(s.repeat(3)); // 'hehehe'
+  
+  test-one
 
 
 
